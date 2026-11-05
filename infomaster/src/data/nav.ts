@@ -1,3 +1,5 @@
+import { BRAND } from './brand'
+
 export type NavItem = {
   label: string
   to: string
@@ -11,22 +13,14 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Contacto', to: '/contacto' },
 ]
 
-/** Plataforma externa del campus. Se abre en pestaña nueva, no es una ruta. */
-export const CAMPUS_URL =
-  'https://infomaster.formacampus.com/SecureLogin/Login.aspx?ReturnUrl=%2fIndexIF.aspx'
-
+/** Datos ficticios de la demo: sin teléfono para no llamar a nadie real. */
 export const CONTACT = {
-  company: 'Expertos en Formación MVG',
-  address: 'Calle Molina Lario 14, 29015 Málaga',
-  phone: '+34 951 333 677',
-  phoneHref: 'tel:+34951333677',
-  email: 'info@infomasterformacion.es',
-  emailHref: 'mailto:info@infomasterformacion.es',
-  /** Solo dígitos, con prefijo de país. PROVISIONAL: es el fijo; poner el número real de WhatsApp. */
-  whatsapp: '34951333677',
+  company: BRAND.name,
+  address: BRAND.address,
+  email: BRAND.email,
 } as const
 
-/** Enlace wa.me con el mensaje ya escrito; el usuario solo pulsa «enviar». */
-export function whatsappHref(message: string) {
-  return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`
+/** El formulario de contacto, con el curso ya escrito si viene de una ficha. */
+export function contactHref(curso?: string) {
+  return curso ? `/contacto?curso=${encodeURIComponent(curso)}` : '/contacto'
 }

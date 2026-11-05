@@ -19,7 +19,9 @@ import {
   type ValueProp,
 } from '../../data/valueProps'
 import { LinkButton } from '../ui/Button'
-import { ArrowRightIcon, ExternalIcon } from '../ui/Icon'
+import { ArrowRightIcon } from '../ui/Icon'
+import { IconBox } from '../ui/IconBox'
+import { Photo } from '../ui/Photo'
 
 const STEP_ICONS: Record<string, IconType> = {
   credito: LuWallet,
@@ -36,16 +38,12 @@ const PROP_ICONS: Record<string, IconType> = {
   modalidades: LuLayoutGrid,
 }
 
-/**
- * Por qué Infomaster: el argumento del coste cero en grande, el mecanismo del
- * crédito en cuatro pasos y, debajo, el resto como filas de tabla. Asimetría a
- * propósito: no son nueve cosas iguales.
- */
+/** El coste cero en grande, el crédito en cuatro pasos y lo demás junto a una foto. */
 export function ValueProps() {
   return (
     <section aria-labelledby="valor-title" className="pt-20 lg:pt-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="grid gap-8 border-t border-ink pt-8 lg:grid-cols-12 lg:gap-8 lg:pt-10">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-8">
           <h2
             id="valor-title"
             className="text-[clamp(2.75rem,7vw,5.25rem)] leading-[0.95] font-bold tracking-[-0.035em] [font-stretch:125%] lg:col-span-7"
@@ -55,52 +53,39 @@ export function ValueProps() {
             <mark className="bg-brand-yellow px-[0.06em] text-ink">cero</mark>
           </h2>
 
-          <div className="lg:col-span-5 lg:pt-3">
-            <p className="max-w-[44ch] text-xl leading-snug font-semibold text-ink text-pretty">
+          <div className="lg:col-span-5">
+            <p className="max-w-[34ch] text-xl leading-snug font-semibold text-ink text-pretty">
               {VALOR_PRINCIPAL.cierre}
             </p>
-            <LinkButton to="/formacion#calculadora" variant="primary" size="lg" className="mt-8">
-              Calcula tu crédito
-              <ArrowRightIcon className="size-4" />
-            </LinkButton>
           </div>
         </div>
 
-        <CreditFlow />
-
-        <h3 className="sr-only">Qué más incluye</h3>
-        <ul className="mt-16 border-y border-line lg:mt-20">
-          {VALUE_PROPS.map((prop) => (
-            <ValueRow key={prop.id} prop={prop} />
+        <ol
+          aria-label="Cómo funciona el crédito de formación"
+          className="mt-12 grid gap-px border-y border-ink bg-line sm:grid-cols-2 lg:mt-14 lg:grid-cols-4"
+        >
+          {PASOS_CREDITO.map((step) => (
+            <CreditCell key={step.id} step={step} />
           ))}
-        </ul>
+        </ol>
+
+        <div className="mt-16 grid gap-10 lg:mt-24 lg:grid-cols-12 lg:items-center lg:gap-8">
+          <div className="lg:col-span-5">
+            <Photo slot="tutores" ratio={5 / 4} sizes="(max-width: 1023px) 92vw, 40vw" />
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <h3 className="text-3xl leading-[1.05] font-bold tracking-[-0.02em] sm:text-4xl">
+              Todo incluido
+            </h3>
+            <ul className="mt-6 divide-y divide-line border-y border-line">
+              {VALUE_PROPS.map((prop) => (
+                <ValueRow key={prop.id} prop={prop} />
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
-  )
-}
-
-/** Cuadro de icono con filete: el cuadrado de la marca, con contenido. */
-function IconBox({ icon: Icon }: { icon: IconType }) {
-  return (
-    <span
-      aria-hidden="true"
-      className="flex size-11 shrink-0 items-center justify-center border border-ink text-ink"
-    >
-      <Icon size={22} strokeWidth={1.75} strokeLinecap="square" strokeLinejoin="miter" />
-    </span>
-  )
-}
-
-function CreditFlow() {
-  return (
-    <ol
-      aria-label="Cómo funciona el crédito de formación"
-      className="mt-14 grid gap-px border-y border-ink bg-line sm:grid-cols-2 lg:mt-16 lg:grid-cols-4"
-    >
-      {PASOS_CREDITO.map((step) => (
-        <CreditCell key={step.id} step={step} />
-      ))}
-    </ol>
   )
 }
 
@@ -108,76 +93,61 @@ function CreditCell({ step }: { step: CreditStep }) {
   return (
     <li
       className={[
-        'flex gap-4 p-6 sm:flex-col sm:gap-8 lg:p-7',
+        'flex items-center gap-4 p-5 sm:flex-col sm:items-start sm:gap-6 lg:p-6',
         step.aviso ? 'bg-brand-yellow text-ink' : 'bg-cream',
       ].join(' ')}
     >
       <IconBox icon={STEP_ICONS[step.id]} />
       <div>
         <h3 className="text-lg leading-tight font-bold tracking-[-0.015em]">{step.titulo}</h3>
-        <p className="mt-2 max-w-[28ch] leading-snug text-pretty text-ink">{step.texto}</p>
+        <p className="mt-1 leading-snug text-pretty text-ink">{step.texto}</p>
       </div>
     </li>
   )
 }
 
 function ValueRow({ prop }: { prop: ValueProp }) {
-  const destacada = Boolean(prop.nota)
   return (
-    <li
-      id={prop.id}
-      className={[
-        'grid scroll-mt-24 gap-4 px-4 py-7 not-first:border-t not-first:border-line lg:grid-cols-12 lg:gap-8 lg:px-6 lg:py-9',
-        destacada ? 'bg-brand-yellow text-ink' : '',
-      ].join(' ')}
-    >
-      <div className="flex items-start gap-4 lg:col-span-5">
-        <IconBox icon={PROP_ICONS[prop.id]} />
-        <div>
-          <h4 className="text-xl leading-tight font-bold tracking-[-0.015em] sm:text-2xl">
-            {prop.titulo}
-          </h4>
+    <li id={prop.id} className="flex scroll-mt-24 items-center gap-4 py-4">
+      <IconBox icon={PROP_ICONS[prop.id]} />
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <h4 className="text-lg leading-tight font-bold tracking-[-0.015em]">{prop.titulo}</h4>
           {prop.nota && (
-            <span className="mt-2 inline-block bg-ink px-2 py-0.5 font-heading text-xs font-semibold text-brand-yellow">
+            <span className="bg-brand-yellow px-2 py-0.5 font-heading text-xs font-semibold text-ink">
               {prop.nota}
             </span>
           )}
         </div>
+        <p className="mt-0.5 text-ink-muted text-pretty">{prop.texto}</p>
       </div>
-
-      <div className="lg:col-span-7">
-        <p
-          className={[
-            'max-w-[60ch] leading-relaxed text-pretty',
-            destacada ? 'text-ink' : 'text-ink-muted',
-          ].join(' ')}
+      {prop.enlace && (
+        <Link
+          to={prop.enlace.href}
+          aria-label={prop.enlace.texto}
+          title={prop.enlace.texto}
+          className="inline-flex size-11 shrink-0 items-center justify-center text-brand-red-deep transition-colors hover:bg-cream-deep"
         >
-          {prop.texto}
-        </p>
-        {prop.enlace && <RowLink {...prop.enlace} />}
-      </div>
+          <ArrowRightIcon className="size-5" />
+        </Link>
+      )}
     </li>
   )
 }
 
-const LINK =
-  'mt-3 inline-flex min-h-11 items-center gap-1.5 font-heading text-sm font-semibold ' +
-  'text-brand-red-deep underline underline-offset-4 hover:text-brand-red-dark'
-
-function RowLink({ texto, href, externo }: NonNullable<ValueProp['enlace']>) {
-  if (externo) {
-    return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={LINK}>
-        {texto}
-        <ExternalIcon className="size-3.5" />
-        <span className="sr-only">(se abre en una pestaña nueva)</span>
-      </a>
-    )
-  }
+/** Cierre de la portada: la misma acción del hero, cuando ya se ha convencido. */
+export function ClosingCta() {
   return (
-    <Link to={href} className={LINK}>
-      {texto}
-      <ArrowRightIcon className="size-3.5" />
-    </Link>
+    <section className="bg-brand-yellow">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-14 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-16">
+        <h2 className="text-[clamp(2.25rem,5vw,3.75rem)] leading-[1] font-bold tracking-[-0.03em] [font-stretch:125%]">
+          ¿Cuánto crédito tienes?
+        </h2>
+        <LinkButton to="/formacion#calculadora" variant="primary" size="lg" className="shrink-0">
+          Calcúlalo en un minuto
+          <ArrowRightIcon className="size-4" />
+        </LinkButton>
+      </div>
+    </section>
   )
 }

@@ -5,6 +5,8 @@
  * `import.meta.env` acaba en el bundle que descarga el navegador. La API key
  * de Groq vive solo en el backend.
  */
+import { BRAND } from '../data/brand'
+
 export type ChatSource = {
   titulo: string
   categoria: string
@@ -27,6 +29,18 @@ const RAG_URL = import.meta.env.VITE_RAG_URL as string | undefined
 /** Turnos que se mandan como contexto; el backend recorta a 6 de todos modos. */
 const MAX_HISTORY = 6
 const TIMEOUT_MS = 30_000
+
+/**
+ * El backend desplegado sigue respondiendo con la marca anterior. La demo lo
+ * deja intacto y cambia sus datos aquí; quitar esto al volver a la marca real.
+ */
+function rebrand(text: string) {
+  return text
+    .replace(/[\w.-]+@infomasterformacion\.es/gi, BRAND.email)
+    .replace(/(\+?34[\s-]*)?951[\s-]*333[\s-]*677/g, BRAND.email)
+    .replace(/infomaster formaci[oó]n/gi, BRAND.name)
+    .replace(/infomaster/gi, BRAND.short)
+}
 
 export function isRagConfigured() {
   return Boolean(RAG_URL)
@@ -53,5 +67,6 @@ export async function askCatalog(
   if (!response.ok) {
     throw new Error(`El asistente respondió ${response.status}`)
   }
-  return (await response.json()) as ChatReply
+  const reply = (await response.json()) as ChatReply
+  return { ...reply, answer: rebrand(reply.answer) }
 }

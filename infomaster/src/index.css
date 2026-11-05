@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Tokens de marca — Infomaster Formación
+   Tokens de marca — Luz Formación
    Nota de contraste (verificado, no improvisar):
    - brand-red como TEXTO sobre crema = 4,21:1 → falla AA.
      Para texto rojo sobre fondo claro usar siempre brand-red-deep (5,88:1).
@@ -49,8 +49,8 @@
    - Radio 0 en todo el sitio. El chat IA (components/chat/) es la excepción
      deliberada: sus formas redondas son parte de la señal «esto es IA».
    - Filetes de 1px en lugar de tarjetas; sin sombras.
-   - El color de marca aparece como cuadrados (componente <Square />) y en la
-     acción principal, nunca como relleno decorativo.
+   - El color de marca aparece como cuadrados (componente <Square />), en la
+     acción principal y en el bloque final de llamada a la acción.
 --------------------------------------------------------------------------- */
 
 @layer base {

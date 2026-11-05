@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { NavLink, useLocation } from 'react-router'
-import { CAMPUS_URL, NAV_ITEMS } from '../../data/nav'
+import { BRAND } from '../../data/brand'
+import { NAV_ITEMS } from '../../data/nav'
+import { LinkButton } from '../ui/Button'
 import { Logo } from '../ui/Logo'
 import { Square } from '../ui/Square'
-import { CloseIcon, ExternalIcon, HomeIcon, MenuIcon } from '../ui/Icon'
+import { ArrowRightIcon, CloseIcon, HomeIcon, MenuIcon } from '../ui/Icon'
 
 const LINK_BASE =
   'inline-flex items-center gap-2 py-1 font-heading text-[15px] font-medium ' +
@@ -63,7 +65,7 @@ export function Navbar() {
         aria-label="Principal"
         className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 lg:px-8"
       >
-        <NavLink to="/" aria-label="Infomaster Formación — Inicio" className="shrink-0">
+        <NavLink to="/" aria-label={`${BRAND.name}: inicio`} className="shrink-0">
           <Logo className="h-14 w-auto" />
         </NavLink>
 
@@ -75,7 +77,7 @@ export function Navbar() {
                   <>
                     {/* La página actual se marca con el cuadrado de la marca. */}
                     <Square
-                      angle={19}
+                      angle={4}
                       className={['size-2 transition-opacity', isActive ? '' : 'opacity-0'].join(' ')}
                     />
                     {item.label}
@@ -88,15 +90,9 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a
-            href={CAMPUS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden min-h-11 items-center gap-2 bg-brand-red px-5 font-heading text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-red-deep sm:inline-flex"
-          >
-            Campus virtual
-            <ExternalIcon className="size-3.5" />
-          </a>
+          <div className="hidden sm:block">
+            <LinkButton to="/formacion#calculadora">Calcula tu crédito</LinkButton>
+          </div>
 
           <button
             ref={toggleRef}
@@ -141,22 +137,17 @@ export function Navbar() {
                     {({ isActive }) => (
                       <>
                         {item.label}
-                        {isActive && <Square angle={19} className="size-2.5" />}
+                        {isActive && <Square angle={4} className="size-2.5" />}
                       </>
                     )}
                   </NavLink>
                 </li>
               ))}
             </ul>
-            <a
-              href={CAMPUS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-brand-red px-5 font-heading text-base font-semibold text-white transition-colors hover:bg-brand-red-deep"
-            >
-              Campus virtual
-              <ExternalIcon className="size-4" />
-            </a>
+            <LinkButton to="/formacion#calculadora" size="lg" className="mt-5 w-full">
+              Calcula tu crédito
+              <ArrowRightIcon className="size-4" />
+            </LinkButton>
             <button
               type="button"
               onClick={() => {

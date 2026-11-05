@@ -1,28 +1,30 @@
+import { headshotSrc } from './headshots'
+
 export type Testimonial = {
   name: string
   role: string
   quote: string
-  /** Foto opcional; sin ella se pinta un avatar con iniciales. */
-  photo?: string
+  photo: string
 }
 
+/** Opiniones de ejemplo para la demo; el pie de página lo indica. */
 export const TESTIMONIALS: Testimonial[] = [
   {
-    name: 'María José Palma',
-    role: 'Administradora · Curso de Administración',
-    quote:
-      'El curso que hice con Infomaster me ayudó a mejorar en mi trabajo y conseguí una promoción.',
+    name: 'Marta Gil',
+    role: 'Administración',
+    quote: 'Mejoré en mi trabajo y conseguí una promoción.',
+    photo: headshotSrc('headshot-2', 400),
   },
   {
     name: 'Javier Ruiz',
-    role: 'Encargado de almacén · Curso de Logística',
-    quote:
-      'Pude compaginarlo con mi jornada completa. El temario va al grano y se nota que lo dan profesionales del sector.',
+    role: 'Logística',
+    quote: 'Lo compaginé con mi jornada. El temario va al grano.',
+    photo: headshotSrc('headshot-5', 400),
   },
   {
     name: 'Lucía Fernández',
-    role: 'Recepcionista · Curso de Atención al Cliente',
-    quote:
-      'Me tramitaron la bonificación sin que yo tuviera que hacer papeleo. Repetiré con ellos el año que viene.',
+    role: 'Atención al cliente',
+    quote: 'Tramitaron la bonificación sin que yo hiciera papeleo.',
+    photo: headshotSrc('headshot-3', 400),
   },
 ]

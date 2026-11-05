@@ -1,92 +1,43 @@
-import { CAMPUS_URL } from './nav'
-
 /**
- * Lo que Infomaster aporta, en el orden en que se lee en la portada.
- * Cómo editar: cambia el texto de un bloque o reordénalos. `nota` pinta un
- * distintivo amarillo junto al título (úsalo con moderación: uno, como mucho dos).
+ * Lo que aportamos, en el orden en que se lee en la portada.
+ * `nota` pinta un distintivo junto al título: uno, como mucho dos.
  */
 export type ValueProp = {
   id: string
   titulo: string
   texto: string
   nota?: string
-  enlace?: { texto: string; href: string; externo?: boolean }
+  enlace?: { texto: string; href: string }
 }
 
-/** El argumento principal: va en grande, encima de la lista. */
 export const VALOR_PRINCIPAL = {
-  titulo: 'Formación a coste cero',
-  texto:
-    'Cada empresa tiene un crédito anual para formar a su plantilla. El curso se adelanta y se recupera descontándolo de las cotizaciones a la Seguridad Social. Si no se usa antes de fin de año, se pierde.',
-  cierre: 'Nosotros calculamos cuánto te corresponde y lo gestionamos de principio a fin.',
+  cierre: 'Calculamos tu crédito y lo gestionamos de principio a fin.',
 } as const
 
-/**
- * El mecanismo del crédito en cuatro pasos, para leerlo de un vistazo.
- * El último (`aviso`) es la urgencia: se pinta distinto.
- */
+/** El crédito en cuatro pasos. El último (`aviso`) es la urgencia. */
 export type CreditStep = { id: string; titulo: string; texto: string; aviso?: boolean }
 
 export const PASOS_CREDITO: CreditStep[] = [
-  {
-    id: 'credito',
-    titulo: 'Un crédito anual',
-    texto: 'Cada empresa tiene uno para formar a su plantilla.',
-  },
-  {
-    id: 'adelanto',
-    titulo: 'Adelantas el curso',
-    texto: 'La empresa paga la formación por adelantado.',
-  },
-  {
-    id: 'recuperas',
-    titulo: 'Lo recuperas',
-    texto: 'Se descuenta de las cotizaciones a la Seguridad Social.',
-  },
-  {
-    id: 'fin-de-ano',
-    titulo: 'Antes de fin de año',
-    texto: 'Si no se usa, el crédito se pierde.',
-    aviso: true,
-  },
+  { id: 'credito', titulo: 'Tienes un crédito', texto: 'Cada empresa, cada año.' },
+  { id: 'adelanto', titulo: 'Adelantas el curso', texto: 'La empresa lo paga.' },
+  { id: 'recuperas', titulo: 'Lo recuperas', texto: 'Se descuenta de la Seguridad Social.' },
+  { id: 'fin-de-ano', titulo: 'Antes de fin de año', texto: 'Si no se usa, se pierde.', aviso: true },
 ]
 
 export const VALUE_PROPS: ValueProp[] = [
-  {
-    id: 'tutores',
-    titulo: 'Tutores profesionales',
-    texto:
-      'Cada curso lo acompaña un experto en activo en su materia, que resuelve dudas y corrige durante toda la formación. Nadie aprende solo delante de una pantalla.',
-  },
-  {
-    id: 'fundae',
-    titulo: 'Cero papeleo con FUNDAE',
-    texto:
-      'Comunicación de inicio y fin, plazos, control de asistencia y justificación de la bonificación. Lo tramitamos todo; tu empresa solo firma.',
-  },
+  { id: 'tutores', titulo: 'Tutores en activo', texto: 'Expertos que corrigen y resuelven dudas.' },
+  { id: 'fundae', titulo: 'Cero papeleo', texto: 'Tramitamos FUNDAE. Tu empresa solo firma.' },
   {
     id: 'pif',
     titulo: 'Permiso Individual de Formación',
     nota: 'Poco conocido',
-    texto:
-      'Hasta 200 horas laborables al año, retribuidas, para que un trabajador curse formación oficial acreditada sin que su empresa pierda crédito. Casi nadie lo solicita; te explicamos si encaja y lo tramitamos.',
+    texto: 'Hasta 200 horas retribuidas al año.',
   },
-  {
-    id: 'campus',
-    titulo: 'Campus online 24/7 y diploma',
-    texto:
-      'Contenidos, tutorías y evaluaciones disponibles a cualquier hora desde nuestro campus. Al terminar, diploma acreditativo con las horas y los contenidos cursados.',
-    enlace: {
-      texto: 'Entrar al campus',
-      href: CAMPUS_URL,
-      externo: true,
-    },
-  },
+  { id: 'campus', titulo: 'Campus 24/7 y diploma', texto: 'A cualquier hora, con diploma acreditativo.' },
   {
     id: 'modalidades',
     titulo: 'Presencial, online o mixta',
-    texto:
-      'Un catálogo amplio y actualizado, grupos con fecha cerrada en nuestro centro de Málaga y cursos a medida para equipos.',
-    enlace: { texto: 'Ver próximos cursos', href: '/cursos#proximos-cursos' },
+    texto: 'Grupos con fecha o a medida.',
+    enlace: { texto: 'Próximos cursos', href: '/cursos#proximos-cursos' },
   },
 ]

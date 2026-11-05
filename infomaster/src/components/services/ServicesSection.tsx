@@ -37,10 +37,7 @@ export function ServicesSection({ defaultAudience = 'empresa' }: { defaultAudien
   return (
     <section id="servicios" aria-labelledby="servicios-title" className="scroll-mt-24 py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading id="servicios-title" title="Formación para empresas y para trabajadores">
-          Es el mismo servicio con dos puntos de partida: tu empresa quiere formar a su equipo, o
-          tú quieres un curso y necesitas que tu empresa lo apruebe.
-        </SectionHeading>
+        <SectionHeading id="servicios-title" title="Para empresas y trabajadores" />
 
         <div role="tablist" aria-label="¿Quién eres?" className="flex">
           {TABS.map((tab, i) => {
@@ -67,7 +64,7 @@ export function ServicesSection({ defaultAudience = 'empresa' }: { defaultAudien
               >
                 <Square
                   tone={selected ? 'yellow' : 'ink'}
-                  angle={selected ? 19 : 0}
+                  angle={selected ? 4 : 0}
                   className="size-2.5 transition-transform duration-300"
                 />
                 {tab.label}

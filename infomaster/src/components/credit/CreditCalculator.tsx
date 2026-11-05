@@ -1,4 +1,5 @@
 import { useId, useRef, useState, type ReactNode } from 'react'
+import { LuChevronDown } from 'react-icons/lu'
 import { Button, ExternalButton, LinkButton } from '../ui/Button'
 import { ArrowRightIcon, ExternalIcon } from '../ui/Icon'
 import { Square } from '../ui/Square'
@@ -259,7 +260,7 @@ function StepRail({ step }: { step: Step }) {
             >
               <Square
                 tone={state === 'todo' ? 'ink' : state === 'current' ? 'red' : 'yellow'}
-                angle={state === 'current' ? 19 : 0}
+                angle={state === 'current' ? 4 : 0}
                 className={state === 'todo' ? 'size-2 opacity-25' : 'size-2.5'}
               />
               <span className="tabular-nums">0{i + 1}</span>
@@ -277,13 +278,18 @@ function Intro({ onNext }: { onNext: () => void }) {
   return (
     <div>
       <p className="max-w-[60ch] text-lg leading-relaxed text-pretty">
-        Calcula de forma aproximada el crédito del que dispone tu empresa este año para formar a su
-        plantilla. Responde a tres o cuatro preguntas y te damos la cifra con el detalle del
-        cálculo.
+        Unas pocas preguntas y te damos una cifra aproximada, con el detalle del cálculo.
       </p>
 
-      <div className="mt-8 border-t border-ink pt-6">
-        <h4 className="text-lg font-bold">Lo que esta calculadora no tiene en cuenta</h4>
+      <details className="group mt-8 border-t border-ink pt-4">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-heading font-semibold [&::-webkit-details-marker]:hidden">
+          Lo que no tiene en cuenta
+          <LuChevronDown
+            aria-hidden="true"
+            size={20}
+            className="shrink-0 transition-transform duration-200 group-open:rotate-180"
+          />
+        </summary>
         <ul className="mt-4 divide-y divide-line border-y border-line">
           {[
             [
@@ -307,7 +313,7 @@ function Intro({ onNext }: { onNext: () => void }) {
             </li>
           ))}
         </ul>
-      </div>
+      </details>
 
       <div className="mt-8 flex justify-end">
         <Button variant="primary" onClick={onNext}>

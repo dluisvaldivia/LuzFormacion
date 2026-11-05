@@ -2,10 +2,10 @@ import type { CSSProperties } from 'react'
 
 /**
  * El cuadrado de la marca como único ornamento del sistema: viñetas, marcador
- * de navegación activa, comillas de testimonio. Los ángulos son los del logo.
+ * de navegación activa. El ángulo es el del logo.
  */
 type Tone = 'red' | 'yellow' | 'ink'
-type Angle = 0 | 19 | 37 | -27
+type Angle = 0 | 4
 
 const TONES: Record<Tone, string> = {
   red: 'bg-brand-red',
@@ -15,9 +15,7 @@ const TONES: Record<Tone, string> = {
 
 const ANGLES: Record<Angle, string> = {
   0: '',
-  19: 'rotate-[19deg]',
-  37: 'rotate-[37deg]',
-  [-27]: '-rotate-[27deg]',
+  4: 'rotate-[4deg]',
 }
 
 type Props = {
@@ -36,46 +34,49 @@ export function Square({ tone = 'red', angle = 0, className = 'size-2' }: Props)
 }
 
 /**
- * Los cuatro cuadrados del logo, medidos sobre el original (viewBox 182×208).
- * Orden de pintado = orden del array: el amarillo girado queda detrás del rojo
- * grande, y el rojo pequeño delante del amarillo recto.
+ * Los dos cuadrados del logo: iguales, desplazados en diagonal, y su cruce en
+ * rojo oscuro para que se lean como un cubo. El giro de 4° es el «casi» perfecto.
  */
 const LOGO_SQUARES = [
-  { cx: 129, cy: 111, size: 61, angle: -27, fill: '#D9B400' }, // amarillo detrás (brand-yellow-deep)
-  { cx: 127, cy: 56, size: 74, angle: 37, fill: '#D93D2D' }, // rojo grande
-  { cx: 82, cy: 155, size: 70, angle: 0, fill: '#F8D10F' }, // amarillo delante
-  { cx: 30, cy: 178, size: 44, angle: 19, fill: '#D93D2D' }, // rojo pequeño
+  { x: 46, y: 14, size: 100, fill: '#F8D10F' }, // amarillo detrás
+  { x: 14, y: 46, size: 100, fill: '#D93D2D' }, // rojo delante
+  { x: 46, y: 46, size: 68, fill: '#8F2418' }, // cruce (brand-red-dark)
 ] as const
 
-const LOGO_MARK_VIEWBOX = { width: 182, height: 208 }
+const LOGO_MARK_SIZE = 160
+const LOGO_ANGLE = 4
 
 export function LogoSquares({ animated = false }: { animated?: boolean }) {
   const motion = animated ? 'origin-center [transform-box:fill-box] animate-square-in' : undefined
+  const center = LOGO_MARK_SIZE / 2
   // El giro fijo va en el <g>: con transform-box:fill-box, transform-origin
   // también desplaza el atributo transform del propio <rect> y lo saca de sitio.
-  return LOGO_SQUARES.map(({ cx, cy, size, angle, fill }, index) => (
-    <g key={index} transform={angle ? `rotate(${angle} ${cx} ${cy})` : undefined}>
-      <rect
-        x={cx - size / 2}
-        y={cy - size / 2}
-        width={size}
-        height={size}
-        fill={fill}
-        className={motion}
-        style={
-          animated
-            ? ({ '--undo': `${-angle}deg`, animationDelay: `${index * 120}ms` } as CSSProperties)
-            : undefined
-        }
-      />
+  return (
+    <g transform={`rotate(${LOGO_ANGLE} ${center} ${center})`}>
+      {LOGO_SQUARES.map(({ x, y, size, fill }, index) => (
+        <rect
+          key={fill}
+          x={x}
+          y={y}
+          width={size}
+          height={size}
+          fill={fill}
+          className={motion}
+          style={
+            animated
+              ? ({ '--undo': `${-LOGO_ANGLE * 6}deg`, animationDelay: `${index * 120}ms` } as CSSProperties)
+              : undefined
+          }
+        />
+      ))}
     </g>
-  ))
+  )
 }
 
 /**
- * Los cuadrados del logo a cualquier escala, con la misma geometría.
+ * El cubo del logo a cualquier escala, con la misma geometría.
  * `animated` hace el único gesto de movimiento del sitio: los cuadrados
- * entran girando hasta su ángulo («No te pares»). Se anula con reduced-motion.
+ * entran girando hasta su sitio. Se anula con reduced-motion.
  */
 export function LogoMark({
   className,
@@ -84,9 +85,13 @@ export function LogoMark({
   className?: string
   animated?: boolean
 }) {
-  const { width, height } = LOGO_MARK_VIEWBOX
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} aria-hidden="true" focusable="false" className={className}>
+    <svg
+      viewBox={`0 0 ${LOGO_MARK_SIZE} ${LOGO_MARK_SIZE}`}
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
       <LogoSquares animated={animated} />
     </svg>
   )

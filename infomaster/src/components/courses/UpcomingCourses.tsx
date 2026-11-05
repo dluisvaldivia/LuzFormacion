@@ -1,5 +1,16 @@
+import type { IconType } from 'react-icons'
+import {
+  LuBrickWall,
+  LuCable,
+  LuCar,
+  LuDroplets,
+  LuGraduationCap,
+  LuHammer,
+  LuHardHat,
+  } from 'react-icons/lu'
+import { Link } from 'react-router'
 import { CONVOCATORIAS, type Convocatoria } from '../../data/convocatorias'
-import { CONTACT } from '../../data/nav'
+import { CONTACT, contactHref } from '../../data/nav'
 import {
   datesLabel,
   daysBetween,
@@ -12,7 +23,7 @@ import {
 } from '../../lib/fechas'
 import { LinkButton } from '../ui/Button'
 import { SectionHeading } from '../ui/SectionHeading'
-import { ArrowRightIcon, ClockIcon, MailIcon, PhoneIcon, PinIcon } from '../ui/Icon'
+import { ArrowRightIcon, ClockIcon, PinIcon } from '../ui/Icon'
 
 type Upcoming = Convocatoria & {
   id: string
@@ -56,15 +67,14 @@ function status(conv: Upcoming) {
   return null
 }
 
-/** Correo que ya dice qué curso y qué fechas: nadie tiene que preguntar "¿cuál?". */
-function mailHref(conv: Upcoming) {
-  const fechas = datesLabel(conv.days)
-  const subject = `Información: ${conv.curso} (${fechas})`
-  const body =
-    `Hola, me interesa el curso de ${conv.curso} en ${conv.sede}, ` +
-    `los días ${fechas} de ${conv.days[0].getFullYear()}.\n\n` +
-    'Nombre:\nEmpresa (si aplica):\nTeléfono:\nNúmero de personas:\n'
-  return `${CONTACT.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+const COURSE_ICONS: Record<string, IconType> = {
+  Albañilería: LuBrickWall,
+  Construcción: LuHardHat,
+  'Taller mecánico': LuCar,
+  'Aparatos elevadores': LuCable,
+  'Trabajos en altura': LuHardHat,
+  Fontanería: LuDroplets,
+  'Carpintería metálica': LuHammer,
 }
 
 /** Fecha como dato de tabla: número grande tabular, día y mes en versalitas. */
@@ -86,16 +96,16 @@ function DateStamp({ day }: { day: Date }) {
 function CourseRow({ conv }: { conv: Upcoming }) {
   const badge = status(conv)
   const fechas = datesLabel(conv.days)
+  const Icon = COURSE_ICONS[conv.curso] ?? LuGraduationCap
 
   return (
-    <li className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-5 py-6 transition-colors duration-200 hover:bg-cream-deep sm:gap-x-8 lg:-mx-4 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:px-4">
+    <li className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-4 py-5 transition-colors duration-200 hover:bg-cream-deep sm:gap-x-8 lg:-mx-4 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:px-4">
       <DateStamp day={conv.days[0]} />
 
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <h4 className="text-xl font-semibold tracking-[-0.01em] sm:text-2xl">
-            {conv.curso}
-          </h4>
+          <Icon aria-hidden="true" size={22} className="shrink-0 text-brand-red-deep" />
+          <h4 className="text-xl font-semibold tracking-[-0.01em] sm:text-2xl">{conv.curso}</h4>
           {badge && (
             <span className="bg-brand-yellow px-2 py-0.5 font-heading text-xs font-semibold text-ink">
               {badge}
@@ -111,47 +121,25 @@ function CourseRow({ conv }: { conv: Upcoming }) {
           <li className="flex items-center gap-1.5">
             <ClockIcon className="size-4" />
             <span className="tabular-nums">{conv.horas} horas</span>
-            {conv.horario && <span>· {conv.horario}</span>}
+            <span>· {rhythm(conv.days)}</span>
           </li>
           <li className="flex items-center gap-1.5">
             <PinIcon className="size-4" />
             {conv.modalidad} · {conv.sede}
           </li>
         </ul>
-
-        <div aria-hidden="true" className="mt-3 flex flex-wrap items-center gap-1.5">
-          <span className="mr-1 basis-full text-sm font-medium text-ink sm:basis-auto">{rhythm(conv.days)}</span>
-          {conv.days.map((day) => (
-            <span
-              key={day.getTime()}
-              className="border border-line px-2 py-1 font-heading text-xs font-medium tabular-nums text-ink"
-            >
-              {weekdayShort(day)} {day.getDate()} {monthShort(day)}
-            </span>
-          ))}
-        </div>
       </div>
 
-      <div className="col-span-2 flex gap-2 lg:col-span-1">
-        <a
-          href={mailHref(conv)}
-          className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 bg-brand-red px-5 py-2.5 font-heading text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-red-deep lg:flex-none"
-        >
-          <MailIcon className="size-4" />
-          Pedir información
-          <span className="sr-only">
-            sobre {conv.curso}, {fechas}
-          </span>
-        </a>
-        <a
-          href={CONTACT.phoneHref}
-          aria-label={`Llamar para preguntar por ${conv.curso}`}
-          title={CONTACT.phone}
-          className="inline-flex size-11 shrink-0 items-center justify-center border border-ink text-ink transition-colors duration-200 hover:bg-ink hover:text-cream"
-        >
-          <PhoneIcon className="size-4" />
-        </a>
-      </div>
+      <Link
+        to={contactHref(conv.curso)}
+        className="col-span-2 inline-flex min-h-11 items-center justify-center gap-2 border border-ink px-5 py-2.5 font-heading text-sm font-semibold text-ink transition-colors duration-200 hover:bg-ink hover:text-cream lg:col-span-1"
+      >
+        Me interesa
+        <span className="sr-only">
+          : {conv.curso}, {fechas}
+        </span>
+        <ArrowRightIcon className="size-4" />
+      </Link>
     </li>
   )
 }
@@ -169,20 +157,13 @@ export function UpcomingCourses({ limit }: Props) {
   return (
     <section id="proximos-cursos" className="scroll-mt-24 py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <SectionHeading title="Próximos cursos">
-          Grupos presenciales con fecha cerrada. Pide información y te contamos horario,
-          precio y plazas disponibles.
-        </SectionHeading>
+        <SectionHeading title="Próximos cursos">Grupos con fecha cerrada.</SectionHeading>
 
         {shown.length === 0 ? (
           <div className="border-y border-line py-10">
             <p className="font-heading font-semibold">Ahora mismo no hay grupos con fecha.</p>
             <p className="mt-2 text-sm text-ink-muted">
-              Escríbenos a{' '}
-              <a href={CONTACT.emailHref} className="text-brand-red-deep underline underline-offset-4">
-                {CONTACT.email}
-              </a>{' '}
-              y te avisamos del próximo.
+              Escríbenos a {CONTACT.email} y te avisamos del próximo.
             </p>
           </div>
         ) : (

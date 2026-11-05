@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Secretos locales (claves de Unsplash): nunca al repositorio
+.env

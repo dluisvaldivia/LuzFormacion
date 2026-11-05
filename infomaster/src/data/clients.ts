@@ -1,43 +1,17 @@
-import { publicUrl } from '../lib/publicUrl'
+import type { IconType } from 'react-icons'
+import { LuChefHat, LuHotel, LuLeaf, LuTruck, LuWrench, LuHardHat } from 'react-icons/lu'
 
-/**
- * Logos de clientes y acreditaciones.
- *
- * `src` está vacío mientras no lleguen los archivos definitivos: sin él se
- * pinta un placeholder con el mismo ratio, así que añadir el logo real no
- * mueve el layout. Sustituir = rellenar `src` con la ruta en /public/logos/.
- */
-export type LogoEntry = {
+/** Empresas inventadas para la demo; el pie de página lo indica. */
+export type Client = {
   name: string
-  src?: string
-  href?: string
-  /** El logo es blanco/claro: necesita un tile oscuro para verse. */
-  dark?: boolean
+  icon: IconType
 }
 
-export const CLIENTS: LogoEntry[] = [
-  {
-    name: 'Jardines Villalba',
-    src: publicUrl('/images/empresasparticipantes/jardines-villalba-logo.png'),
-  },
-  {
-    name: 'Aloha Golf Club',
-    src: publicUrl('/images/empresasparticipantes/Logo-Aloha-50-Aniversario-Blanco.png'),
-    dark: true,
-  },
-  { name: 'HGV', src: publicUrl('/images/empresasparticipantes/HGV-blue_logo.svg') },
-  {
-    name: 'Empleabilidad ETT',
-    src: publicUrl('/images/empresasparticipantes/logo-empleabilidad-1-min.png'),
-  },
-  { name: 'Cliente 5' },
-  { name: 'Cliente 6' },
+export const CLIENTS: Client[] = [
+  { name: 'Hoteles Brisalta', icon: LuHotel },
+  { name: 'Verdial Jardines', icon: LuLeaf },
+  { name: 'Talleres Arenal', icon: LuWrench },
+  { name: 'Almenar Obras', icon: LuHardHat },
+  { name: 'Logimar Sur', icon: LuTruck },
+  { name: 'Cítrico Catering', icon: LuChefHat },
 ]
-
-export const ACCREDITATIONS: LogoEntry[] = [
-  { name: 'Junta de Andalucía' },
-  { name: 'Fundación Estatal para la Formación en el Empleo' },
-  { name: 'SEPE — Servicio Público de Empleo Estatal' },
-]
-
-export const CERTIFICATIONS: LogoEntry[] = [{ name: 'LOPD Certificado' }]

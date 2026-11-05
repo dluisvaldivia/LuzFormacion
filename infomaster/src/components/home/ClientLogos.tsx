@@ -1,22 +1,24 @@
 import { CLIENTS } from '../../data/clients'
-import { LogoPlaceholder } from '../ui/LogoPlaceholder'
-import { SectionHeading } from '../ui/SectionHeading'
 
 export function ClientLogos() {
   return (
-    <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-      <SectionHeading title="Nuestros clientes">
-        Empresas de toda Andalucía que forman a sus equipos con nosotros.
-      </SectionHeading>
-
-      {/* Rejilla de bordes compartidos: una tabla de logos, no seis tarjetas. */}
-      <ul className="grid grid-cols-2 border-t border-l border-line sm:grid-cols-3 lg:grid-cols-6">
-        {CLIENTS.map((entry) => (
-          <li key={entry.name} className="border-r border-b border-line">
-            <LogoPlaceholder entry={entry} />
-          </li>
-        ))}
-      </ul>
+    <section aria-labelledby="clientes-title" className="border-y border-line bg-white">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-8 lg:flex-row lg:items-center lg:gap-10 lg:px-8">
+        <h2 id="clientes-title" className="shrink-0 font-heading text-base font-semibold">
+          Confían en nosotros
+        </h2>
+        <ul className="grid flex-1 grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-between">
+          {CLIENTS.map(({ name, icon: Icon }) => (
+            <li
+              key={name}
+              className="flex items-center gap-2 font-heading text-sm font-bold tracking-[-0.01em] text-ink-muted [font-stretch:112%]"
+            >
+              <Icon aria-hidden="true" size={18} className="shrink-0" />
+              {name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   )
 }
