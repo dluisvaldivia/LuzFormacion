@@ -21,6 +21,36 @@ export const VALOR_PRINCIPAL = {
   cierre: 'Nosotros calculamos cuánto te corresponde y lo gestionamos de principio a fin.',
 } as const
 
+/**
+ * El mecanismo del crédito en cuatro pasos, para leerlo de un vistazo.
+ * El último (`aviso`) es la urgencia: se pinta distinto.
+ */
+export type CreditStep = { id: string; titulo: string; texto: string; aviso?: boolean }
+
+export const PASOS_CREDITO: CreditStep[] = [
+  {
+    id: 'credito',
+    titulo: 'Un crédito anual',
+    texto: 'Cada empresa tiene uno para formar a su plantilla.',
+  },
+  {
+    id: 'adelanto',
+    titulo: 'Adelantas el curso',
+    texto: 'La empresa paga la formación por adelantado.',
+  },
+  {
+    id: 'recuperas',
+    titulo: 'Lo recuperas',
+    texto: 'Se descuenta de las cotizaciones a la Seguridad Social.',
+  },
+  {
+    id: 'fin-de-ano',
+    titulo: 'Antes de fin de año',
+    texto: 'Si no se usa, el crédito se pierde.',
+    aviso: true,
+  },
+]
+
 export const VALUE_PROPS: ValueProp[] = [
   {
     id: 'tutores',
