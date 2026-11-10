@@ -1,35 +1,35 @@
-# INFOMASTER
+# LuzFormacion
 
 ## Business context
 
-Infomaster Formación is a training-course brokerage based in Málaga. Understanding the
+Luz Formación is a training-course brokerage based in Málaga. Understanding the
 real-world operation matters for scoping what this site should eventually do:
 
 - **La jefa** (owner) handles accounting, banking, and client relationships (new and
   repeat) — sometimes visiting clients in person. She collects payments and sometimes
   sets up direct debits ("domiciliar pagos").
-- **HISPANEA** (Madrid) is a partner: two comerciales sell courses and run the Madrid
+- A partner in Madrid: two comerciales sell courses and run the Madrid
   side of the business.
 - Course sales are tracked in two parallel Excel 2013 workbooks — one for Madrid, one
   for Málaga — recording salesperson, company, student, course, dates, price breakdown,
-  and the Madrid/Málaga revenue split. Mónica separately keeps her own differently
+  and the Madrid/Málaga revenue split. The owner separately keeps her own differently
   organized, simpler workbook that may not reconcile with those numbers.
 - The course catalog Madrid and Málaga sell from is itself an Excel file, sourced from
   two suppliers: **VÉRTICE** (recently merged with **CUMLAUDE**) and **ACADEMIA
   INTEGRAL** (which also resells **GRUPO SYSTEM** courses). Both suppliers update their
-  own catalogs independently — nothing syncs back to Infomaster's catalog automatically.
+  own catalogs independently — nothing syncs back to Luz Formación's catalog automatically.
 - Gmail is used for email, but working files are deliberately kept off Google Drive:
-  internet in Málaga centro cuts out frequently (attributed to cyberattacks), so Mónica
+  internet in Málaga centro cuts out frequently (attributed to cyberattacks), so the owner
   doesn't want the business dependent on Google availability.
 - Invoices are handwritten/manual per client: a template filled in by hand from a
   separate Excel database of company info.
 
 ## Website mission
 
-Live site today: https://www.infomasterformacion.es/. Client acquisition is almost
+Client acquisition is almost
 entirely word-of-mouth and face-to-face — the website currently does none of the
 commercial work, and this has been a slow year for the business. The redesign exists to
-change that, and to show Infomaster what their site could be doing for them.
+change that, and to show the business what its site could be doing for them.
 
 Two horizons:
 1. **Now** — rebuild the marketing site to actually convert (course catalog, clear
@@ -41,9 +41,9 @@ Two horizons:
 
 ## Project layout
 
-This repo root contains a top-level `package.json` (Tailwind CSS + `@tailwindcss/vite` only) and a single app in [infomaster/](infomaster/) — the actual React project.
+This repo root contains a top-level `package.json` (Tailwind CSS + `@tailwindcss/vite` only) and a single app in [luzformacion/](luzformacion/) — the actual React project.
 
-- [infomaster/](infomaster/) — Vite + React 19 + TypeScript app: the Infomaster Formación site
+- [luzformacion/](luzformacion/) — Vite + React 19 + TypeScript app: the Luz Formación site
   - `src/App.tsx` — route table; `src/main.tsx` — entry point (wraps in `BrowserRouter`)
   - `src/components/layout/Layout.tsx` — shared shell (navbar + outlet + footer + chat widget)
   - `src/components/{ui,home,chat}/` — primitives, home sections, AI chat widget
@@ -70,7 +70,7 @@ or the aurora palette for ordinary buttons, cards, or sections — that erases t
 
 ## Commands
 
-Run from `infomaster/`:
+Run from `luzformacion/`:
 
 ```bash
 npm run dev       # start Vite dev server

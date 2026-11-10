@@ -1,6 +1,6 @@
 # RAG del catálogo de cursos
 
-Servicio que responde preguntas sobre el catálogo de Infomaster desde el widget
+Servicio que responde preguntas sobre el catálogo de Luz Formación desde el widget
 de chat de la web. Recuperación híbrida sobre el catálogo limpio de
 `data/Catalogue/` + generación con Groq.
 
@@ -20,7 +20,7 @@ cp .env.example .env                      # y pon tu GROQ_API_KEY
 .venv/bin/uvicorn app.main:app --reload --port 8000
 ```
 
-En `infomaster/.env.local`: `VITE_RAG_URL=http://localhost:8000`.
+En `luzformacion/.env.local`: `VITE_RAG_URL=http://localhost:8000`.
 
 ## Modos del catálogo
 
@@ -86,7 +86,7 @@ Navegador ─► POST /chat ─► FastAPI ─► LangGraph ─► Groq ─► {
 - No recoge datos personales, no nombra proveedores ni competidores, y tiene
   plantillas fijas (sin LLM) para precio, modalidad, FUNDAE, validez,
   inscripción, datos personales, alumnos y saludo.
-- Toda respuesta útil cierra derivando a `info@infomasterformacion.es` / `+34 951 333 677`.
+- Toda respuesta útil cierra derivando a `hola@luzformacion.example` / `+34 000 000 000`.
 
 ## Actualizar el catálogo
 

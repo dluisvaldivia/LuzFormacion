@@ -1,5 +1,5 @@
 # CI en cada push y pull request (lint + build); en main, además, publica la
-# web en GitHub Pages: https://dluisvaldivia.github.io/INFOMASTER/
+# web en GitHub Pages: https://dluisvaldivia.github.io/LuzFormacion/
 name: CI/CD
 
 on:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: infomaster
+        working-directory: luzformacion
     steps:
       - uses: actions/checkout@v4
 
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: infomaster/package-lock.json
+          cache-dependency-path: luzformacion/package-lock.json
 
       - run: npm ci
       - run: npm run lint
@@ -41,13 +41,13 @@ jobs:
           VITE_RAG_URL: ${{ vars.VITE_RAG_URL }}
 
       # SPA: GitHub Pages sirve 404.html en rutas desconocidas
-      # (p. ej. /INFOMASTER/cursos al recargar), así carga la app igualmente.
+      # (p. ej. /LuzFormacion/cursos al recargar), así carga la app igualmente.
       - run: cp dist/index.html dist/404.html
 
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
-          path: infomaster/dist
+          path: luzformacion/dist
 
   deploy:
     needs: build

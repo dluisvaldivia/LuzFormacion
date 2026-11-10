@@ -1,0 +1,119 @@
+{
+  "hero": {
+    "id": "vBg0dxwfIYM",
+    "alt": "Profesor explicando a un grupo de adultos en un aula luminosa",
+    "url": "https://images.unsplash.com/photo-1758270704080-e3556e6794a7?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI1fA&ixlib=rb-4.1.0",
+    "width": 3800,
+    "height": 2138,
+    "author": "Vitaly Gariev",
+    "authorUrl": "https://unsplash.com/@silverkblack?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "empresas": {
+    "id": "g1Kr4Ozfoac",
+    "alt": "Tres compañeras de trabajo riendo alrededor de un portátil",
+    "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI1fA&ixlib=rb-4.1.0",
+    "width": 5231,
+    "height": 3487,
+    "author": "Brooke Cagle",
+    "authorUrl": "https://unsplash.com/@brookecagle?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "trabajadores": {
+    "id": "hutmLbMs90o",
+    "alt": "Trabajador con casco y chaleco naranja sobre un fondo amarillo",
+    "url": "https://images.unsplash.com/photo-1659353587116-054298b54147?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI2fA&ixlib=rb-4.1.0",
+    "width": 4128,
+    "height": 2752,
+    "author": "Fotos",
+    "authorUrl": "https://unsplash.com/@fotospk?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "tutores": {
+    "id": "QLYH-AU2p60",
+    "alt": "Mujer sonriente de pelo rizado trabajando con un portátil",
+    "url": "https://images.unsplash.com/photo-1758876020491-9560594ec362?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI2fA&ixlib=rb-4.1.0",
+    "width": 3840,
+    "height": 2160,
+    "author": "Vitaly Gariev",
+    "authorUrl": "https://unsplash.com/@silverkblack?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "construccion": {
+    "id": "74tW4FXP4Hw",
+    "alt": "Cuadrilla con ropa naranja en una obra",
+    "url": "https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI2fA&ixlib=rb-4.1.0",
+    "width": 4240,
+    "height": 2832,
+    "author": "Mika Baumeister",
+    "authorUrl": "https://unsplash.com/@kommumikation?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "mecanica": {
+    "id": "XP8o9_Arwqg",
+    "alt": "Mecánico revisando un coche en el taller",
+    "url": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI3fA&ixlib=rb-4.1.0",
+    "width": 7008,
+    "height": 4672,
+    "author": "Dextar Studio",
+    "authorUrl": "https://unsplash.com/@dextarstudio?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "oficina": {
+    "id": "JaoVGh5aJ3E",
+    "alt": "Dos compañeras trabajando con un portátil",
+    "url": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI3fA&ixlib=rb-4.1.0",
+    "width": 5472,
+    "height": 3648,
+    "author": "Amy Hirschi",
+    "authorUrl": "https://unsplash.com/@amyhirschi?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "hosteleria": {
+    "id": "y-XZf_TNRms",
+    "alt": "Cocinero cortando verduras en una cocina profesional",
+    "url": "https://images.unsplash.com/photo-1622021142947-da7dedc7c39a?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI3fA&ixlib=rb-4.1.0",
+    "width": 5468,
+    "height": 3076,
+    "author": "Pylyp Sukhenko",
+    "authorUrl": "https://unsplash.com/@novokayn?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "logistica": {
+    "id": "6tAIO3pxde4",
+    "alt": "Carretilla elevadora naranja en un almacén",
+    "url": "https://images.unsplash.com/photo-1620388640785-892616248ec8?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI4fA&ixlib=rb-4.1.0",
+    "width": 5477,
+    "height": 3651,
+    "author": "Pickawood",
+    "authorUrl": "https://unsplash.com/@pickawood?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "prevencion": {
+    "id": "9OB46apMbC4",
+    "alt": "Casco de seguridad rojo sobre el suelo de una obra",
+    "url": "https://images.unsplash.com/photo-1567954970774-58d6aa6c50dc?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ3NTI4fA&ixlib=rb-4.1.0",
+    "width": 4032,
+    "height": 2268,
+    "author": "Ümit Yıldırım",
+    "authorUrl": "https://unsplash.com/@umityildirim?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "idiomas": {
+    "id": "iQPr1XkF5F0",
+    "alt": "Mujer con libros de texto para estudiar idiomas",
+    "url": "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ4NzE2fA&ixlib=rb-4.1.0",
+    "width": 5472,
+    "height": 3648,
+    "author": "javier trueba",
+    "authorUrl": "https://unsplash.com/@javotrueba?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "informatica": {
+    "id": "pjAH2Ax4uWk",
+    "alt": "Persona trabajando frente a un ordenador",
+    "url": "https://images.unsplash.com/photo-1511376777868-611b54f68947?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ4NzE2fA&ixlib=rb-4.1.0",
+    "width": 5472,
+    "height": 3648,
+    "author": "charlesdeluvio",
+    "authorUrl": "https://unsplash.com/@charlesdeluvio?utm_source=luz_formacion&utm_medium=referral"
+  },
+  "finanzas": {
+    "id": "LNnmSumlwO4",
+    "alt": "Persona en un escritorio con calculadora y cuaderno",
+    "url": "https://images.unsplash.com/photo-1707902665498-a202981fb5ac?ixid=M3wxMTI0NTQ2fDB8MXxhbGx8fHx8fHx8fHwxNzk0MzQ4NzE2fA&ixlib=rb-4.1.0",
+    "width": 3073,
+    "height": 2050,
+    "author": "Jakub Żerdzicki",
+    "authorUrl": "https://unsplash.com/@jakubzerdzicki?utm_source=luz_formacion&utm_medium=referral"
+  }
+}

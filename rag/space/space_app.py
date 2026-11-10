@@ -23,7 +23,7 @@ def _noop() -> None:
 
 main.load_state()
 
-server = Server(title="Infomaster RAG", docs_url=None, redoc_url=None)
+server = Server(title="Luz Formación RAG", docs_url=None, redoc_url=None)
 server.state.limiter = main.limiter
 server.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # Con un CORSMiddleware de Starlette en la app, el CORS propio de Gradio se aparta.
@@ -48,7 +48,7 @@ def home() -> str:
 HOME_HTML = """<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Infomaster · Asistente de cursos</title>
+<title>Luz Formación · Asistente de cursos</title>
 <style>
   body{font:16px/1.5 system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1rem;color:#1a1a1a;background:#faf7f0}
   h1{font-size:1.4rem;margin:0 0 .25rem} p{color:#555;margin-top:0}
@@ -57,7 +57,7 @@ HOME_HTML = """<!doctype html>
   #out{white-space:pre-wrap;border-top:1px solid #ccc;padding-top:1rem}
   small{color:#777}
 </style></head><body>
-<h1>Asistente del catálogo de Infomaster</h1>
+<h1>Asistente del catálogo de Luz Formación</h1>
 <p>Backend del chat de la web. Prueba una pregunta sobre los cursos.</p>
 <form id="f"><input id="q" placeholder="¿Tenéis cursos de Excel de menos de 30 horas?" required maxlength="500">
 <button>Preguntar</button></form>

@@ -1,4 +1,4 @@
-"""Configuración central del servicio RAG de Infomaster."""
+"""Configuración central del servicio RAG de Luz Formación."""
 from __future__ import annotations
 
 import os
@@ -71,8 +71,8 @@ ANSWER_TEMPERATURE = 0.2
 ANSWER_MAX_TOKENS = 600
 
 # --- Negocio --------------------------------------------------------------
-CONTACT_EMAIL = "info@infomasterformacion.es"
-CONTACT_PHONE = "+34 951 333 677"
+CONTACT_EMAIL = "hola@luzformacion.example"
+CONTACT_PHONE = "+34 000 000 000"
 
 # El chat nunca cita precios: son tarifas B2B que dependen del número de
 # alumnos y de la bonificación. Ojo: en este catálogo TODOS valen 7,5 €/hora,
@@ -83,8 +83,6 @@ EXPOSE_PRICES = False
 
 # --- API ------------------------------------------------------------------
 ALLOWED_ORIGINS = [
-    "https://www.infomasterformacion.es",
-    "https://infomasterformacion.es",
     # Demo del rediseño en GitHub Pages.
     "https://dluisvaldivia.github.io",
 ]
